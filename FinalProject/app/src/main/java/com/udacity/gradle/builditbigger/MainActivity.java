@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
             protected void onPostExecute(String result) {
                 Intent jokeIntent = new Intent(getApplicationContext(), JokeActivitiy.class);
                 jokeIntent.putExtra(JokeActivitiy.JOKE_ID, result);
+                jokeIntent.putExtra(JokeActivitiy.REACTION_ID, getString(R.string.joke_reaction));
                 startActivity(jokeIntent);            }
         };
 

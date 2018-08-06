@@ -10,6 +10,7 @@ import android.widget.TextView;
 public class JokeActivitiy extends AppCompatActivity {
 
     public static final String JOKE_ID = "joke_id";
+    public static final String REACTION_ID = "reaction_id";
 
     TextView mJokeTextView;
     TextView mReactionTextView;
@@ -25,12 +26,13 @@ public class JokeActivitiy extends AppCompatActivity {
 
         Intent intent = getIntent();
         String joke = intent.getStringExtra(JOKE_ID);
+        String reaction = intent.getStringExtra(REACTION_ID);
         if(joke != null) {
             mJokeTextView.setText(joke);
-            mReactionTextView.setText("rofl!");
+            mReactionTextView.setText(reaction);
         } else {
-            mJokeTextView.setText("No joke provided");
-            mReactionTextView.setText(":<");
+            mJokeTextView.setText(getText(R.string.error_joke));
+            mReactionTextView.setText(getText(R.string.error_reaction));
         }
 
 

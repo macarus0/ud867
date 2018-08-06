@@ -42,6 +42,17 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    flavorDimensions 'tier'
+    productFlavors {
+        free {
+            dimension 'tier'
+            applicationId 'com.udacity.gradle.builditbigger.free'
+        }
+        paid {
+            dimension 'tier'
+            applicationId 'com.udacity.gradle.builditbigger.paid'
+        }
+    }
 }
 
 dependencies {
@@ -51,7 +62,7 @@ dependencies {
     implementation ('com.android.support:appcompat-v7:26.1.0'){
         exclude module: 'com.android.support:support-annotations:26.1.0'
     }
-    implementation 'com.google.android.gms:play-services-ads:11.8.0'
+    freeImplementation 'com.google.android.gms:play-services-ads:11.8.0'
     implementation 'com.google.api-client:google-api-client-android:1.24.1'
     implementation 'com.google.http-client:google-http-client-android:1.24.1'
     implementation 'com.google.code.findbugs:jsr305:3.0.1'

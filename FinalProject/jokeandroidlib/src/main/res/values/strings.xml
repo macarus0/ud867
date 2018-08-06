@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">JokeAndroidLib</string>
+    <string name="error_joke">No joke provided!</string>
+    <string name="error_reaction">:C</string>
 </resources>
