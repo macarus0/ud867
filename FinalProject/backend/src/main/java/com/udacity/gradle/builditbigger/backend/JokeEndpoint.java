@@ -1,5 +1,6 @@
 package com.udacity.gradle.builditbigger.backend;
 
+import com.example.macarus0.javajokes.JokeSource;
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
@@ -22,8 +23,7 @@ public class JokeEndpoint {
     @ApiMethod(name = "getJoke")
     public MyBean getJoke() {
         MyBean response = new MyBean();
-        response.setData("Time flies like an arrow, fruit flies like a banana.");
-
+        response.setData(JokeSource.getJoke());
         return response;
     }
 

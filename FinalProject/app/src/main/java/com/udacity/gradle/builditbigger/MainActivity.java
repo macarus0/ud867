@@ -3,12 +3,12 @@ package com.udacity.gradle.builditbigger;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Pair;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.macarus0.javajokes.JokeSource;
 import com.example.macarus0.jokeandroidlib.JokeActivitiy;
 
 
@@ -46,11 +46,17 @@ public class MainActivity extends AppCompatActivity {
     public void tellJoke(View view) {
         FetchJokeTask fetchJokeTask = new FetchJokeTask() {
             @Override
-            protected void onPostExecute(String result) {
-                Intent jokeIntent = new Intent(getApplicationContext(), JokeActivitiy.class);
-                jokeIntent.putExtra(JokeActivitiy.JOKE_ID, result);
-                jokeIntent.putExtra(JokeActivitiy.REACTION_ID, getString(R.string.joke_reaction));
-                startActivity(jokeIntent);            }
+            protected void onPostExecute(Pair<String, Throwable> pair) {
+                if (pair.second == null) {
+                    Intent jokeIntent = new Intent(getApplicationContext(), JokeActivitiy.class);
+                    jokeIntent.putExtra(JokeActivitiy.JOKE_ID, pair.first);
+                    jokeIntent.putExtra(JokeActivitiy.REACTION_ID, getString(R.string.joke_reaction));
+                    startActivity(jokeIntent);
+                } else {
+                    Toast.makeText(getApplicationContext(),
+                            pair.second.getMessage(), Toast.LENGTH_LONG).show();
+                }
+            }
         };
 
         fetchJokeTask.execute(this);
